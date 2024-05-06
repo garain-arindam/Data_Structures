@@ -11,14 +11,17 @@
 struct Node{
     ElementType element;
     struct Node * next;
+    int length;
 };
 typedef struct Node node;
 typedef node* nodeptr;
 typedef nodeptr LinkedList;
 
 // operations
-nodeptr createNewLinkedList(); // creating an empty list
-void insert(ElementType, LinkedList); // inserting element in the list
+LinkedList createNewLinkedList(); // creating an empty list
+void insertBegning(ElementType, LinkedList); // inserting an element at the starting of the list
+void insertEnding(ElementType, LinkedList); // inserting an element at the ending of the list
+void insertPosition(ElementType, LinkedList, int); // inserting an element at a particular position
 int isEmpty(LinkedList); // to check if the list is empty
 void printList(LinkedList); // for displaying the list
 int find(ElementType, LinkedList); // finding an element
