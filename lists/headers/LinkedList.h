@@ -10,7 +10,7 @@
 // structure for node of the list
 struct Node{
     ElementType element;
-    struct Node * next;
+    struct Node* next;
     int length;
 };
 typedef struct Node node;
@@ -24,7 +24,8 @@ void insertEnding(ElementType, LinkedList); // inserting an element at the endin
 void insertPosition(ElementType, LinkedList, int); // inserting an element at a particular position
 int isEmpty(LinkedList); // to check if the list is empty
 void printList(LinkedList); // for displaying the list
-int find(ElementType, LinkedList); // finding an element
+int findIndex(ElementType, LinkedList); // finding index of an element
+nodeptr findPrevious(ElementType, LinkedList); // finding pointer to an element
 void deleteElement(ElementType,LinkedList); // deleting an element
 void deleteList(LinkedList); // deleting the whole list
 

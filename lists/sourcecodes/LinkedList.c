@@ -34,6 +34,7 @@ void insertBegning(ElementType x, LinkedList list){
         else {
             newNode->next = NULL;
             newNode->element = x;
+            newNode->length = 0;
 
             if (list->length == 0){
                 // first node of the list
@@ -51,17 +52,135 @@ void insertBegning(ElementType x, LinkedList list){
     
 }
 
+//inserting at the end of the list
+void insertEnding(ElementType x, LinkedList list){
+    //dummy node implementation assumed
+
+    // making new node
+    nodeptr newNode = (nodeptr) malloc(sizeof(node));
+    if (newNode == NULL){
+        printf("Sufficient not available.\n");
+        return;
+    }
+    newNode->element =  x;
+    newNode->next = NULL;
+    newNode->length = 0;
+
+    // traversing the list
+    nodeptr currNode = list;
+    while(currNode->next != NULL){
+        currNode = currNode->next;
+    }
+
+    // adding the new node to the list
+    currNode->next = newNode;
+
+    // increamenting the list size
+    list->length++;
+}
+
+
+// to check if the list is empty
+int isEmpty(LinkedList list){
+    return (list->length == 0);
+}
+
+
+// finding element in the list(not sorted) - linear search
+// @return index of first occurance of element x
+int findIndex(ElementType x, LinkedList list){
+    
+    int pos = -1;
+
+    if (!isEmpty(list)){
+        // traversing the node and finding the element x
+        nodeptr currNode = list;
+       
+        while((currNode = currNode->next)!= NULL){
+           pos++;
+           if (currNode->element == x)
+            return pos;
+        }
+    }
+    return -1; // element not found
+}
+
+// finding the previoud node of the node to delete
+// @return pointer to the previous node fo the first occurance in the list 
+nodeptr findPrevious(ElementType x, LinkedList list){
+    
+    if (!isEmpty(list)){
+        // traversing the node and finding the previous node
+        nodeptr currNode = list;
+       
+        while((currNode->next)!= NULL){
+            // checking if the element of the next node == X
+            if ((currNode->next)->element == x)
+                return currNode;
+            currNode = currNode->next;
+        }
+    }
+    return NULL; // element not found
+}
+
+
+// deleting the first occurence of an element
+void deleteElement(ElementType x,LinkedList list){
+    if(!isEmpty(list)){
+        // finding the previous node
+        nodeptr previousNode = findPrevious(x,list);
+        
+        if (previousNode != NULL){
+            // making a temp pointer point to the node to delete 
+            nodeptr toDelete = previousNode->next;
+            // removing the link and making new link
+            previousNode->next = toDelete->next;
+            // freeing the node
+            free(toDelete);
+        }
+
+    }
+}
+
+// deleting the whole list
+void deleteList(LinkedList list){
+    while(!isEmpty(list)){
+        // freeing all the node except the header
+        ElementType et;
+        nodeptr toDelete =  list; // points at the header
+        while((toDelete->next) != NULL){
+            // checking if there is node attached to the header
+            // idea: standing at the header node, we check if there another node
+            // linked to it, if it is we delete that node
+            // making toDelete point to the 1st node
+            toDelete =  toDelete->next;
+            // link header to the 2nd node
+            list->next = toDelete->next;
+            // free the node
+            free(toDelete);
+            // making toDelete point to the header
+            toDelete = list;
+        }
+        // lastly we free the header
+        free(list);
+    }
+}
+
 // printing the list
 void printList(LinkedList list){
     
     int i = list->length;
     nodeptr currNode= list->next;
     
-    while(i-- >= 0){
+    while(currNode != NULL){
         printf("%d", currNode->element);
-        if (i > 0)
+        currNode = currNode->next;
+
+        if (currNode != NULL){
             printf(" -> ");
+        }
+        
     }
-    
+    printf("\n");
     return;
 }
