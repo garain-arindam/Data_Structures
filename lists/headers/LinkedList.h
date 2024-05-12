@@ -23,10 +23,11 @@ void insertBegning(ElementType, LinkedList); // inserting an element at the star
 void insertEnding(ElementType, LinkedList); // inserting an element at the ending of the list
 void insertPosition(ElementType, LinkedList, int); // inserting an element at a particular position
 int isEmpty(LinkedList); // to check if the list is empty
+int getLength(LinkedList); // for finding the length of the list
 void printList(LinkedList); // for displaying the list
 int findIndex(ElementType, LinkedList); // finding index of an element
 nodeptr findPrevious(ElementType, LinkedList); // finding pointer to an element
 void deleteElement(ElementType,LinkedList); // deleting an element
-void deleteList(LinkedList); // deleting the whole list
+void deleteList(LinkedList*); // deleting the whole list
 
 #endif

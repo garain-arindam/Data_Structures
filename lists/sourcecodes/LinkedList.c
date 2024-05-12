@@ -24,7 +24,12 @@ LinkedList createNewLinkedList(){
 
 // inserting node at the begning
 void insertBegning(ElementType x, LinkedList list){
-    
+    // if list is NULL return
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
+
     // dummy node implementation assumed
     nodeptr newNode = (nodeptr) (malloc(sizeof(node)));
         if (newNode == NULL){
@@ -56,6 +61,10 @@ void insertBegning(ElementType x, LinkedList list){
 void insertEnding(ElementType x, LinkedList list){
     //dummy node implementation assumed
 
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
     // making new node
     nodeptr newNode = (nodeptr) malloc(sizeof(node));
     if (newNode == NULL){
@@ -81,8 +90,22 @@ void insertEnding(ElementType x, LinkedList list){
 
 
 // to check if the list is empty
+// @retun 0 is list not empty else 1
 int isEmpty(LinkedList list){
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return -1;
+    }
     return (list->length == 0);
+}
+
+// for finding the length of the list
+// @return length of the list is not null else -1
+int getLength(LinkedList list){
+    if (list != NULL){
+        return list->length;
+    }
+    return -1;
 }
 
 
@@ -137,18 +160,31 @@ void deleteElement(ElementType x,LinkedList list){
             previousNode->next = toDelete->next;
             // freeing the node
             free(toDelete);
+            list->length--;
         }
-
+        else{
+            printf("Element doesn't exits.\n");
+        }
+        return;
     }
+    return;
 }
 
 // deleting the whole list
-void deleteList(LinkedList list){
-    while(!isEmpty(list)){
+void deleteList(LinkedList* l){
+    printf("in delete%p\n",*l);
+    printf("checking: %d",*l == NULL);
+    if (*l == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
+    LinkedList list = *l;
+    if(!isEmpty(list)){
         // freeing all the node except the header
         ElementType et;
         nodeptr toDelete =  list; // points at the header
-        while((toDelete->next) != NULL){
+        int i = 0;
+        while((toDelete->next) != NULL){   
             // checking if there is node attached to the header
             // idea: standing at the header node, we check if there another node
             // linked to it, if it is we delete that node
@@ -160,16 +196,23 @@ void deleteList(LinkedList list){
             free(toDelete);
             // making toDelete point to the header
             toDelete = list;
+            //decrementing the length
+            list->length--;
         }
-        // lastly we free the header
-        free(list);
     }
+    // lastly we free the header
+    free(list);
+    *l = NULL; 
+    printf("out of print\n");
 }
 
 // printing the list
 void printList(LinkedList list){
-    
-    int i = list->length;
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
+
     nodeptr currNode= list->next;
     
     while(currNode != NULL){
