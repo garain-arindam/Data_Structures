@@ -43,6 +43,7 @@ void insertBegning(ElementType x, LinkedList list){
 
             if (list->length == 0){
                 // first node of the list
+                newNode ->next = list->next;
                 list->next = newNode;
             }
             else{
@@ -88,6 +89,32 @@ void insertEnding(ElementType x, LinkedList list){
     list->length++;
 }
 
+// inserting at a current positon
+void insertIndex(ElementType x, LinkedList list, int indx){
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
+
+    if (indx == 0){
+        insertBegning(x,list);
+    }
+    else if ((indx) >= (list->length)){
+        insertEnding(x,list);
+    }
+    else{
+        // traversing to correct location
+        nodeptr tempNode = list;
+        while((--indx)>=0)
+            tempNode = tempNode->next;
+        
+        insertBegning(x,tempNode);
+    }
+    {
+        /* code */
+    }
+    
+}
 
 // to check if the list is empty
 // @retun 0 is list not empty else 1

@@ -21,7 +21,7 @@ typedef nodeptr LinkedList;
 LinkedList createNewLinkedList(); // creating an empty list
 void insertBegning(ElementType, LinkedList); // inserting an element at the starting of the list
 void insertEnding(ElementType, LinkedList); // inserting an element at the ending of the list
-void insertPosition(ElementType, LinkedList, int); // inserting an element at a particular position
+void insertIndex(ElementType, LinkedList, int); // inserting an element at a particular position
 int isEmpty(LinkedList); // to check if the list is empty
 int getLength(LinkedList); // for finding the length of the list
 void printList(LinkedList); // for displaying the list
