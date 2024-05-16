@@ -110,9 +110,6 @@ void insertIndex(ElementType x, LinkedList list, int indx){
         
         insertBegning(x,tempNode);
     }
-    {
-        /* code */
-    }
     
 }
 
