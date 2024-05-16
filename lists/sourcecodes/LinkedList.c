@@ -4,6 +4,7 @@
 
 
 // making an empty list
+// @return pointer to a new list or void*
 LinkedList createNewLinkedList(){
     // allocate free space
     LinkedList newList;
@@ -11,7 +12,7 @@ LinkedList createNewLinkedList(){
 
     // report error if no space
     if (newList == NULL){
-        printf("Out of memory!!!... cann't create list\n");
+        printf("Out of memory!!!t\n");
     }
     else {
         printf("List created successfully.\n");
@@ -33,7 +34,7 @@ void insertBegning(ElementType x, LinkedList list){
     // dummy node implementation assumed
     nodeptr newNode = (nodeptr) (malloc(sizeof(node)));
         if (newNode == NULL){
-            printf("Out of memory!!!...can add new node\n");
+            printf("Out of memory!!!\n");
             return;
         }
         else {
@@ -62,7 +63,7 @@ void insertEnding(ElementType x, LinkedList list){
     // making new node
     nodeptr newNode = (nodeptr) malloc(sizeof(node));
     if (newNode == NULL){
-        printf("Sufficient not available.\n");
+        printf("Out of memory.\n");
         return;
     }
     newNode->element =  x;
@@ -98,16 +99,20 @@ void insertIndex(ElementType x, LinkedList list, int indx){
     else{
         // traversing to correct location
         nodeptr tempNode = list;
-        while((--indx)>=0)
+        while((--indx) > 0)
             tempNode = tempNode->next;
         
         insertBegning(x,tempNode);
+
+        // adjusting the length 
+        tempNode->length--;
+        list->length++;
     }
     
 }
 
 // to check if the list is empty
-// @retun 0 is list not empty else 1
+// @return 0 if empty, 1 if not empty else -1 if the list does not exit
 int isEmpty(LinkedList list){
     if (list == NULL){
         printf("List does not exit.\n");
@@ -117,7 +122,7 @@ int isEmpty(LinkedList list){
 }
 
 // for finding the length of the list
-// @return length of the list is not null else -1
+// @return length of the list if not null else -1
 int getLength(LinkedList list){
     if (list != NULL){
         return list->length;
@@ -189,8 +194,6 @@ void deleteElement(ElementType x,LinkedList list){
 
 // deleting the whole list
 void deleteList(LinkedList* l){
-    printf("in delete%p\n",*l);
-    printf("checking: %d",*l == NULL);
     if (*l == NULL){
         printf("List does not exit.\n");
         return;
@@ -220,7 +223,6 @@ void deleteList(LinkedList* l){
     // lastly we free the header
     free(list);
     *l = NULL; 
-    printf("out of print\n");
 }
 
 // printing the list
