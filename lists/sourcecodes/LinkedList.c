@@ -41,16 +41,9 @@ void insertBegning(ElementType x, LinkedList list){
             newNode->element = x;
             newNode->length = 0;
 
-            if (list->length == 0){
-                // first node of the list
-                newNode ->next = list->next;
-                list->next = newNode;
-            }
-            else{
-                // inserting node at the begning
-                newNode->next = list->next;
-                list->next = newNode;
-            }
+            newNode ->next = list->next;
+            list->next = newNode;
+            
             // increasing the length of the list
             list->length++;
             return;           
