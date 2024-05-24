@@ -235,7 +235,7 @@ void printList(LinkedList list){
     nodeptr currNode= list->next;
     
     while(currNode != NULL){
-        printf("%d", currNode->element);
+        printf(FS, currNode->element);
         currNode = currNode->next;
 
         if (currNode != NULL){

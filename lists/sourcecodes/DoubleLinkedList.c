@@ -68,7 +68,7 @@ void insertEnding(ElementType x, DoubleLinkedList list){
         }
         // adding node to the list 
         newNode->previous = tempNode;
-        newNode->next = tempNode->next;
+        newNode->next = NULL;
         tempNode->next = newNode;
         // increasing the length of the list
         list->length++;
@@ -132,7 +132,14 @@ void printList(DoubleLinkedList list){
         printf("List does not exit\n");
     }
     else{
-        
+        nodeptr trav = list;
+        while (trav->next != NULL){
+            trav = trav->next;
+            printf(FS,trav->element);
+            if (trav->next != NULL)
+                printf(" <-> ");
+        }
+        printf("\n");
     }
     return;
 }
