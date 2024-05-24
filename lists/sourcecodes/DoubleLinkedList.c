@@ -139,7 +139,43 @@ void printList(DoubleLinkedList list){
             if (trav->next != NULL)
                 printf(" <-> ");
         }
-        printf("\n");
     }
     return;
+}
+
+// Finds the index of the specified element
+// @return index of x
+int findIndex(ElementType x, DoubleLinkedList list){
+    if (list == NULL){
+        printf("List does not exit\n");
+        return -1;
+    }
+    else{
+        nodeptr trav = list; // for traversing the list
+        int indx = 0;
+        while ( (trav = trav->next) != NULL){
+            if (trav->element == x)
+                return indx;
+            indx++;
+        }           
+        return -1;
+    }
+}
+
+// Find the previous node of the node containing the element x
+// @return pointer to previous node contating x
+nodeptr findPrevious(ElementType x, DoubleLinkedList list){
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return NULL;
+    }
+    else{
+        nodeptr previousNode = list;
+        while(previousNode->next != NULL){
+            if(((previousNode->next)->element) == x)
+                break;
+            previousNode = previousNode->next;
+        }
+        return previousNode;
+    }
 }

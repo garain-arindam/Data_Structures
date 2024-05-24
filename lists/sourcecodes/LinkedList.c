@@ -243,6 +243,5 @@ void printList(LinkedList list){
         }
         
     }
-    printf("\n");
     return;
 }
