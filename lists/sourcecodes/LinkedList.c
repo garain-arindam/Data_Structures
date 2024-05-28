@@ -231,17 +231,20 @@ void printList(LinkedList list){
         printf("List does not exit.\n");
         return;
     }
-
-    nodeptr currNode= list->next;
-    
-    while(currNode != NULL){
-        printf(FS, currNode->element);
-        currNode = currNode->next;
-
-        if (currNode != NULL){
-            printf(" -> ");
-        }
+    else if(!isEmpty(list)){
+        nodeptr currNode= list->next;
         
+        while(currNode != NULL){
+            printf(FS, currNode->element);
+            currNode = currNode->next;
+
+            if (currNode != NULL){
+                printf(" -> ");
+            }
+            
+        }
     }
+    else   
+        printf("List is empty.\n");
     return;
 }

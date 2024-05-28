@@ -71,7 +71,7 @@ void main(int argc,char ** argv){
     printList(list1);printf("\n");
     insertIndex(1,list1,0);
     printList(list1);printf("\n");
-    deleteElement(9,list1);
+    deleteElement(90,list1);
     printList(list1); printf("\n");
     deleteElement(10,list1);
     printList(list1);printf("\n");
