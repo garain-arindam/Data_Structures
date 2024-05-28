@@ -91,7 +91,7 @@ void insertIndex(ElementType x, DoubleLinkedList list, int indx){
         }
         else{
             nodeptr tempPtr = list;
-            while((--indx) > 0)
+            while((indx--) > 0)
                 tempPtr = tempPtr->next;
             
             // inserting the element
@@ -177,5 +177,54 @@ nodeptr findPrevious(ElementType x, DoubleLinkedList list){
             previousNode = previousNode->next;
         }
         return previousNode;
+    }
+}
+
+
+// deletes the first occurence of the element x from the list
+void deleteElement(ElementType x,DoubleLinkedList list){
+    if (list == NULL){
+        printf("List does not exit.\n");
+        return;
+    }
+    else{
+        nodeptr trav = list;
+        while ((trav->next) != NULL){
+            trav = trav->next;
+            if (trav->element == x){
+                // making the previous node point to the next node
+                (trav->previous)->next = trav->next;
+                // making the next node point to the previous node
+                if (trav->next != NULL)
+                    (trav->next)->previous = trav->previous;
+                // adjusting the previous and next pointers of curr node
+                trav->next = NULL; trav->previous = NULL;
+                // decrementing the list size
+                list->length--;
+                break;
+            }
+        }
+        free(trav);
+    }
+}
+
+
+// deletes the whole list
+void deleteList(DoubleLinkedList* list){
+    if (*list == NULL){
+        printf("List does not exit");
+        return;
+    }
+    else{
+        //nodeptr trav = *list;
+        while((*list)->next != NULL){
+            deleteElement((*list)->next->element,*list);
+        }
+        // freeing the header
+        free(*list);
+        // making the header NULL
+        *list = NULL;
+
+        return;
     }
 }
