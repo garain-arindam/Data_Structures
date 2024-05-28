@@ -131,7 +131,7 @@ void printList(DoubleLinkedList list){
     if (list == NULL){
         printf("List does not exit\n");
     }
-    else{
+    else if (!isEmpty(list)){
         nodeptr trav = list;
         while (trav->next != NULL){
             trav = trav->next;
@@ -140,6 +140,8 @@ void printList(DoubleLinkedList list){
                 printf(" <-> ");
         }
     }
+    else
+        printf("List is empty.");
     return;
 }
 
@@ -150,7 +152,7 @@ int findIndex(ElementType x, DoubleLinkedList list){
         printf("List does not exit\n");
         return -1;
     }
-    else{
+    else if (!isEmpty(list)){
         nodeptr trav = list; // for traversing the list
         int indx = 0;
         while ( (trav = trav->next) != NULL){
@@ -167,9 +169,8 @@ int findIndex(ElementType x, DoubleLinkedList list){
 nodeptr findPrevious(ElementType x, DoubleLinkedList list){
     if (list == NULL){
         printf("List does not exit.\n");
-        return NULL;
     }
-    else{
+    else if (!isEmpty(list)){
         nodeptr previousNode = list;
         while(previousNode->next != NULL){
             if(((previousNode->next)->element) == x)
@@ -178,6 +179,7 @@ nodeptr findPrevious(ElementType x, DoubleLinkedList list){
         }
         return previousNode;
     }
+    return NULL;
 }
 
 
@@ -187,7 +189,7 @@ void deleteElement(ElementType x,DoubleLinkedList list){
         printf("List does not exit.\n");
         return;
     }
-    else{
+    else if (!isEmpty(list)){
         nodeptr trav = list;
         while ((trav->next) != NULL){
             trav = trav->next;
@@ -203,8 +205,10 @@ void deleteElement(ElementType x,DoubleLinkedList list){
                 list->length--;
                 break;
             }
-        }
         free(trav);
+        }
+    else
+        
     }
 }
 

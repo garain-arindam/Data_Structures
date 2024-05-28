@@ -99,7 +99,7 @@ void insertIndex(ElementType x, LinkedList list, int indx){
     else{
         // traversing to correct location
         nodeptr tempNode = list;
-        while((--indx) > 0)
+        while((indx--) > 0)
             tempNode = tempNode->next;
         
         insertBegning(x,tempNode);
